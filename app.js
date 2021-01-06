@@ -18,14 +18,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 // Global variables
-let posts = []; // let is a safer version of var
+let posts = []; // let is a safer version of var, let will appear when parser evaluates it so when something goes in this val will be created.
 
 // Get methods
 
 app.get("/", function(req, res){
   res.render("home", {startingContent: homeStartingContent})
   console.log(posts)
-});
+});git a
 
 app.get("/about", function(req, res){
   res.render("about", {aboutContent: aboutContent})
