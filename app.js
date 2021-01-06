@@ -17,10 +17,14 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+// Global variables
+let posts = []; // let is a safer version of var
+
 // Get methods
 
 app.get("/", function(req, res){
   res.render("home", {startingContent: homeStartingContent})
+  console.log(posts)
 });
 
 app.get("/about", function(req, res){
@@ -38,7 +42,17 @@ app.get("/compose", function(req, res){
 // Post methods
 
 app.post("/compose", function(req, res){
-  console.log(req.body.postTitle)
+  // console.log(req.body.postTitle) // req.body <- can be used through bodyparser
+  // console.log(req.body.postBody)
+   
+  const post = {
+    title: req.body.postTitle,
+    content:req.body.postBody
+  };
+
+  posts.push(post);
+  
+  res.redirect("/")
 })
 
 
